@@ -7,8 +7,9 @@
 //#include <QThread>
 #include <QNetworkDatagram>
 #include <iostream>
+#include <QNetworkInterface>
 
-#define localsocket 55180
+#define localsocket 8880
 #define remotesocket 5005
 
 

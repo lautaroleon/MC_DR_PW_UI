@@ -16,6 +16,20 @@ void socket_com::sendDataToClient(QByteArray data){
 
 void socket_com::connect_socket(){
 
+    QList<QHostAddress> list = QNetworkInterface::allAddresses();
+
+    for(int nIter=0; nIter<list.count(); nIter++)
+
+    {
+        if(!list[nIter].isLoopback())
+            if (list[nIter].protocol() == QAbstractSocket::IPv4Protocol)
+                if(list[nIter].toString()[0] == '1' &&
+                    list[nIter].toString()[1] == '9' &&
+                    list[nIter].toString()[2] == '2' &&
+                    list[nIter].toString()[3] == '.')ip_ = list[nIter].toString();
+    }
+    //ip_="192.168.1.136";
+
     hostadress = new QHostAddress(ip_);
     remoteadress =new QHostAddress(remote_ip);
 
@@ -41,6 +55,7 @@ void socket_com::readPendingDatagrams()
         datagram = udpSocket->receiveDatagram();
         processTheDatagram(datagram);
     }
+   // qDebug()<<local_port_<<"\tasdf";
    /* if(!connection_stablished){
         remote_port_=datagram.senderPort();
         connection_stablished=true;
@@ -49,7 +64,7 @@ void socket_com::readPendingDatagrams()
 
 void socket_com::processTheDatagram(QNetworkDatagram datag){
     //char tab[1] = "\t";
-std::cout<<(datag.data().toStdString())<<std::endl;
+//std::cout<<(datag.data().toStdString())<<std::endl;
     QString word(datag.data());
     QStringList splitlist = word.split("    ");
    // std::cout<<splitlist[0].toStdString()<<std::endl;

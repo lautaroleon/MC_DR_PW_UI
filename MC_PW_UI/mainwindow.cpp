@@ -75,8 +75,8 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(ui->vgain3, SIGNAL(valueChanged(double)), com, SLOT(vgain3(double)));
     QObject::connect(ui->vgain4, SIGNAL(valueChanged(double)), com, SLOT(vgain4(double)));
 
-    ui->ip->setText("192.168.0.101");
-    ui->local_port->setText("55180");
+    ui->ip->setText("192.168.1.101");
+    ui->local_port->setText("8880");
     ui->remote_port->setText("5005");
 
 }
